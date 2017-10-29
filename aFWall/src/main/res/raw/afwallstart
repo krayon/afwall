@@ -2,6 +2,9 @@
 
 export PATH=/system/bin
 
+path="dev.ukanth.ufirewall"
+if [ ! -e /system/bin/iptables ] || [ ! -e /system/bin/ip6tables ]; then #{
+
 startDt="$(head -n 1 /proc/uptime | cut -d . -f 1)"
 while :
 do
@@ -23,6 +26,8 @@ else
 fi
 
 log -p i -t afwall "Waited $((endDt-startDt)) seconds for /data/data."
+
+fi #}
 
 doit() {
   for i in "$@"
